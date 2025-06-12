@@ -1,0 +1,53 @@
+.navbar {
+    padding: 0.5rem 1rem;
+    transition: all 0.3s ease;
+  }
+  
+  .navbar-brand {
+    font-weight: 600;
+    font-size: 1.25rem;
+    transition: color 0.2s ease;
+  }
+  
+  .navbar-brand:hover {
+    color: #17a2b8 !important; /* Bootstrap info color for hover */
+  }
+  
+  .navbar button {
+    transition: background-color 0.2s ease, transform 0.2s ease;
+  }
+  
+  .navbar button:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    transform: translateY(-1px);
+  }
+  
+  .dropdown-toggle::after {
+    margin-left: 0.5rem;
+  }
+  
+  .dropdown-menu {
+    min-width: 200px;
+    border: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    animation: fadeIn 0.2s ease-in;
+  }
+  
+  .dropdown-item {
+    transition: background-color 0.2s ease;
+  }
+  
+  .dropdown-item:hover {
+    background-color: #f8f9fa;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }

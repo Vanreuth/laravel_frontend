@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CozaStore</title>
+  <link rel="icon" href="/favicon.png" type="image/png" />
+  
+  <!-- CSS Links -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-icons/3.0.1/iconfont/material-icons.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel2/2.3.4/assets/owl.carousel.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel2/2.3.4/assets/owl.theme.default.min.css">
+  <link rel="stylesheet" href="./src/assets/css/util.css">
+  <link rel="stylesheet" href="./src/assets/css/main.css">
+</head>
+
+<body class="animsition">
+  <div id="root"></div>
+
+  <!-- React Script -->
+  <script type="module" src="/src/main.jsx"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/2.3.4/owl.carousel.min.js"></script>
+
+
+  <!-- jQuery (necessary for Bootstrap and OwlCarousel) -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+  <!-- Bootstrap JS and Popper.js (ensure Popper is loaded before Bootstrap) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.6/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script src="src/assets/vendor/animsition/js/animsition.min.js"></script>
+
+  <!-- Select2 JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+  <script>
+    $(".js-select2").each(function() {
+      $(this).select2({
+        minimumResultsForSearch: 20,
+        dropdownParent: $(this).next('.dropDownSelect2')
+      });
+    });
+  </script>
+
+  <!-- Moment.js and Daterangepicker JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.js"></script>
+
+  <!-- Slick Carousel JS -->
+  <script type="module" src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+  <script type="module" src="./src/assets/js/slick-custom.js"></script>
+
+  <!-- Magnific Popup JS -->
+  <script type="module" src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
+  <script type="module">
+    $('.gallery-lb').each(function() {
+      $(this).magnificPopup({
+        delegate: 'a',
+        type: 'image',
+        gallery: { enabled: true },
+        mainClass: 'mfp-fade'
+      });
+    });
+  </script>
+
+
+  <!-- PerfectScrollbar JS -->
+  <script type="module" src="https://cdnjs.cloudflare.com/ajax/libs/perfect-scrollbar/1.5.0/perfect-scrollbar.min.js"></script>
+  <script type="module">
+    $('.js-pscroll').each(function() {
+      $(this).css('position', 'relative');
+      $(this).css('overflow', 'hidden');
+      var ps = new PerfectScrollbar(this, {
+        wheelSpeed: 1,
+        scrollingThreshold: 1000,
+        wheelPropagation: false,
+      });
+      $(window).on('resize', function() {
+        ps.update();
+      });
+    });
+  </script>
+
+  <!-- Custom JS -->
+  <script type="module" src="./src/assets/js/main.js"></script>
+
+  <!-- SweetAlert2 JS (Optional, for user notifications) -->
+  <script type="module" src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+  <script type="module">
+    // Example of adding items to wishlist and cart
+    $('.js-addwish-b2').on('click', function(e) {
+      e.preventDefault();
+      var nameProduct = $(this).parent().parent().find('.js-name-b2').html();
+      Swal.fire(nameProduct, "is added to wishlist!", "success");
+    });
+
+    $('.js-addcart-detail').each(function() {
+      var nameProduct = $(this).parent().parent().parent().parent().find('.js-name-detail').html();
+      $(this).on('click', function() {
+        Swal.fire(nameProduct, "is added to cart!", "success");
+      });
+    });
+  </script>
+</body>
+</html>
