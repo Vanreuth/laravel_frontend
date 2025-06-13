@@ -7,9 +7,9 @@ import Shop from "./Shop";
 
 const Home = () => {
   return (
-    <> 
-    {/* <Slider/> */}
-      {/* <Banner /> */}
+    <>
+      { <Slider/> }
+      { <Banner /> }
       <Shop/>
     </>
   );

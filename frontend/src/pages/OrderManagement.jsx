@@ -18,7 +18,7 @@ const OrderManagement = () => {
 
   const fetchOrders = async () => {
     try {
-      const response = await axios.get('http://localhost:8000/api/orders', {
+      const response = await axios.get('http://47.130.121.192:8000/api/orders', {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
       });
       setOrders(response.data);
@@ -29,7 +29,7 @@ const OrderManagement = () => {
 
   const fetchUsers = async () => {
     try {
-      const response = await axios.get('http://localhost:8000/api/users', { // Assuming an API endpoint for users
+      const response = await axios.get('http://47.130.121.192:8000/api/users', { // Assuming an API endpoint for users
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
       });
       setUsers(response.data);
@@ -42,11 +42,11 @@ const OrderManagement = () => {
     e.preventDefault();
     try {
       if (orderForm.id) {
-        await axios.put(`http://localhost:8000/api/orders/${orderForm.id}`, orderForm, {
+        await axios.put(`http://47.130.121.192:8000/api/orders/${orderForm.id}`, orderForm, {
           headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
         });
       } else {
-        await axios.post('http://localhost:8000/api/orders', orderForm, {
+        await axios.post('http://47.130.121.192:8000/api/orders', orderForm, {
           headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
         });
       }
@@ -67,7 +67,7 @@ const OrderManagement = () => {
 
   const handleDelete = async () => {
     try {
-      await axios.delete(`http://localhost:8000/api/orders/${deleteItem.id}`, {
+      await axios.delete(`http://47.130.121.192:8000/api/orders/${deleteItem.id}`, {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
       });
       fetchOrders();

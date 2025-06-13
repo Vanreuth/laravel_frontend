@@ -31,7 +31,7 @@ const AboutUsManagement = () => {
 
   const fetchAboutUsEntries = async () => {
     try {
-      const response = await axios.get('http://localhost:8000/api/about-us', {
+      const response = await axios.get('http://47.130.121.192:8000/api/about-us', {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
       });
       setAboutUsEntries(response.data);
@@ -64,14 +64,14 @@ const AboutUsManagement = () => {
 
       if (aboutUsForm.id) {
         formData.append('_method', 'PUT'); // Laravel requires _method for PUT with FormData
-        await axios.post(`http://localhost:8000/api/about-us/${aboutUsForm.id}`, formData, {
+        await axios.post(`http://47.130.121.192:8000/api/about-us/${aboutUsForm.id}`, formData, {
           headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`,
             'Content-Type': 'multipart/form-data',
           },
         });
       } else {
-        await axios.post('http://localhost:8000/api/about-us', formData, {
+        await axios.post('http://47.130.121.192:8000/api/about-us', formData, {
           headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`,
             'Content-Type': 'multipart/form-data',
@@ -102,7 +102,7 @@ const AboutUsManagement = () => {
 
   const handleDelete = async () => {
     try {
-      await axios.delete(`http://localhost:8000/api/about-us/${deleteItem.id}`, {
+      await axios.delete(`http://47.130.121.192:8000/api/about-us/${deleteItem.id}`, {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
       });
       fetchAboutUsEntries();

@@ -10,7 +10,7 @@ const About = () => {
     const fetchAboutData = async () => {
       try {
         setLoading(true);
-        const response = await axios.get("http://localhost:8000/api/about-us");
+        const response = await axios.get("http://47.130.121.192:8000/api/about-us");
         setAboutData(response.data);
         setLoading(false);
       } catch (error) {
@@ -63,7 +63,7 @@ const About = () => {
       <section
         className="bg-img1 txt-center p-lr-15 p-tb-92"
         style={{
-          backgroundImage: `url(http://localhost:8000${latestAbout.banner_image})`,
+          backgroundImage: `url(http://47.130.121.192:8000${latestAbout.banner_image})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
           height: "350px",
@@ -100,7 +100,7 @@ const About = () => {
               <div className="how-bor1">
                 <div className="hov-img0">
                   <img
-                    src={`http://localhost:8000${latestAbout.image1}`}
+                    src={`http://47.130.121.192:8000${latestAbout.image1}`}
                     alt={latestAbout.subtitle1 || "Our Story"}
                     style={{ width: "100%", height: "auto" }}
                   />
@@ -135,7 +135,7 @@ const About = () => {
               <div className="how-bor2">
                 <div className="hov-img0">
                   <img
-                    src={`http://localhost:8000${latestAbout.image2}`}
+                    src={`http://47.130.121.192:8000${latestAbout.image2}`}
                     alt={latestAbout.subtitle2 || "Our Mission"}
                     style={{ width: "100%", height: "auto" }}
                   />

@@ -30,7 +30,7 @@ const ContactManagement = () => {
 
   const fetchContacts = async () => {
     try {
-      const response = await axios.get('http://localhost:8000/api/contact', {
+      const response = await axios.get('http://47.130.121.192:8000/api/contact', {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
       });
       setContacts(response.data);
@@ -59,14 +59,14 @@ const ContactManagement = () => {
 
       if (contactForm.id) {
         formData.append('_method', 'PUT'); // Laravel requires _method for PUT with FormData
-        await axios.post(`http://localhost:8000/api/contact/${contactForm.id}`, formData, {
+        await axios.post(`http://47.130.121.192:8000/api/contact/${contactForm.id}`, formData, {
           headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`,
             'Content-Type': 'multipart/form-data',
           },
         });
       } else {
-        await axios.post('http://localhost:8000/api/contact', formData, {
+        await axios.post('http://47.130.121.192:8000/api/contact', formData, {
           headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`,
             'Content-Type': 'multipart/form-data',
@@ -95,7 +95,7 @@ const ContactManagement = () => {
 
   const handleDelete = async () => {
     try {
-      await axios.delete(`http://localhost:8000/api/contact/${deleteItem.id}`, {
+      await axios.delete(`http://47.130.121.192:8000/api/contact/${deleteItem.id}`, {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
       });
       fetchContacts();
@@ -337,7 +337,7 @@ const ContactManagement = () => {
                     </td>
                     <td style={styles.td}>
                       <Image
-                        src={`http://localhost:8000${contact.image}`}
+                        src={`http://47.130.121.192:8000${contact.image}`}
                         alt="Contact Image"
                         style={styles.thumbnailImage}
                         rounded

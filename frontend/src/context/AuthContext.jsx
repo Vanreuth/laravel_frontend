@@ -6,11 +6,10 @@ export const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
-
     useEffect(() => {
         const token = localStorage.getItem('token');
         if (token) {
-            axios.get('http://54.179.0.116:8000/api/user', {
+            axios.get('http://47.130.121.192:8000/api/user', {
                 headers: { Authorization: `Bearer ${token}` },
             })
             .then(response => {
@@ -27,14 +26,14 @@ export const AuthProvider = ({ children }) => {
     }, []);
 
     const login = async (email, password) => {
-        const response = await axios.post('http://localhost:8000/api/login', { email, password });
+        const response = await axios.post('http://47.130.121.192:8000/api/login', { email, password });
         localStorage.setItem('token', response.data.token);
         setUser(response.data.user);
         return response.data.user;
     };
 
     const logout = async () => {
-        await axios.post('http://localhost:8000/api/logout', {}, {
+        await axios.post('http://47.130.121.192:8000/api/logout', {}, {
             headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
         });
         localStorage.removeItem('token');

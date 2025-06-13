@@ -24,10 +24,10 @@ const ProductManagement = () => {
     fetchProducts();
     fetchCategories();
   }, []);
-
+const API_BASE_URL = "http://47.130.121.192:8000";
   const fetchCategories = async () => {
     try {
-      const response = await axios.get("http://localhost:8000/api/categories", {
+      const response = await axios.get(`${API_BASE_URL}/api/categories`, {
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
       });
       setCategories(response.data);
@@ -41,7 +41,7 @@ const ProductManagement = () => {
 
   const fetchProducts = async () => {
     try {
-      const response = await axios.get("http://localhost:8000/api/products", {
+      const response = await axios.get(`${API_BASE_URL}/api/products`, {
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
       });
       setProducts(response.data);
@@ -70,7 +70,7 @@ const ProductManagement = () => {
       if (productForm.id) {
         formData.append("_method", "PUT");
         await axios.post(
-          `http://localhost:8000/api/products/${productForm.id}`,
+          `http://47.130.121.192:8000/api/products/${productForm.id}`,
           formData,
           {
             headers: {
@@ -79,7 +79,7 @@ const ProductManagement = () => {
           }
         );
       } else {
-        await axios.post("http://localhost:8000/api/products", formData, {
+        await axios.post("http://47.130.121.192:8000/api/products", formData, {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`,
           },
@@ -112,11 +112,10 @@ const ProductManagement = () => {
       }
     }
   };
-
   const handleDelete = async () => {
     try {
       await axios.delete(
-        `http://localhost:8000/api/${deleteItem.type}/${deleteItem.id}`,
+        `http://47.130.121.192:8000/api/${deleteItem.type}/${deleteItem.id}`,
         {
           headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
         }

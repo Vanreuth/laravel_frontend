@@ -38,7 +38,7 @@ const Feature = () => {
                     {cartData.length === 0 ? (
                       <tr>
                         <td colSpan="5" className="text-center">
-                          Your cart is empty. <a href="/products">Start shopping</a>!
+                          Your cart is empty. <a href="/shop">Start shopping</a>!
                         </td>
                       </tr>
                     ) : (

@@ -4,7 +4,7 @@ import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel/dist/assets/owl.theme.default.css";
 import axios from "axios";
 
-const API_BASE_URL = "http://54.179.0.116:8000";
+const API_BASE_URL = "http://47.130.121.192:8000";
 
 const Slider = () => {
   const [sliders, setSliders] = useState([]);

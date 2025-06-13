@@ -19,12 +19,12 @@ const ShopContaxtProvider = (props) => {
       try {
         setLoading(true);
         setError(null);
-        const response = await axios.get("http://54.179.0.116:8000/api/products");
-        
-        if (response.data && Array.isArray(response.data.list)) {
-          setProducts(response.data.list);
+        const response = await axios.get("http://47.130.121.192:8000/api/products");
+
+        if (response.data && Array.isArray(response.data)) {
+          setProducts(response.data);
         } else {
-          console.error("Invalid products data format:", response.data.list);
+          console.error("Invalid products data format:", response.data);
           setError("Failed to load products: Invalid data format");
           setProducts([]);
         }

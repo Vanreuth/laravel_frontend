@@ -20,7 +20,7 @@ const Product = () => {
     setLoading(true);
     setError(null);
     try {
-      const response = await fetch(`http://localhost:8000/api/products/${productId}`);
+      const response = await fetch(`http://47.130.121.192:8000/api/products/${productId}`);
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
@@ -81,7 +81,7 @@ const Product = () => {
                     <div className="wrap-pic-w pos-relative">
                       <img
                         // Use productData.image_url, and provide a fallback if it's null or undefined
-                        src={productData.image_url || FALLBACK_IMAGE_URL}
+                        src={productData.image_url || FALLBACK_IMAGE_URL }
                         alt={productData.name}
                         className="img-fluid" // Assuming img-fluid is a Bootstrap class for responsive images
                         onError={(e) => { // Optional: handle image load errors on the client side

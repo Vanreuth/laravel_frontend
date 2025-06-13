@@ -22,7 +22,7 @@ const UserManagement = () => {
 
   const fetchUsers = async () => {
     try {
-      const response = await axios.get("http://localhost:8000/api/users", {
+      const response = await axios.get("http://47.130.121.192:8000/api/users", {
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
       });
       setUsers(response.data);
@@ -33,7 +33,7 @@ const UserManagement = () => {
 
   const handleDelete = async () => {
     try {
-      await axios.delete(`http://localhost:8000/api/users/${deleteItem.id}`, {
+      await axios.delete(`http://47.130.121.192:8000/api/users/${deleteItem.id}`, {
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
       });
       fetchUsers();
@@ -52,7 +52,7 @@ const UserManagement = () => {
         delete data.password;
       }
 
-      await axios.put(`http://localhost:8000/api/users/${userForm.id}`, data, {
+      await axios.put(`http://47.130.121.192:8000/api/users/${userForm.id}`, data, {
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
       });
 

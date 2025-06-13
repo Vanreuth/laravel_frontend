@@ -18,10 +18,10 @@ const Shop = () => {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const response = await axios.get("http://54.179.0.116:8000/api/categories");
+        const response = await axios.get("http://47.130.121.192:8000/api/categories");
         
-        if (response.data && response.data.list && Array.isArray(response.data.list)) {
-          setCategories(response.data.list);
+        if (response.data && response.data && Array.isArray(response.data)) {
+          setCategories(response.data);
           setCategoryError(null);
         } else {
           console.error("Invalid categories data format:", response.data);

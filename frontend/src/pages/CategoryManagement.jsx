@@ -16,7 +16,7 @@ const CategoryManagement = () => {
 
   const fetchCategories = async () => {
     try {
-      const response = await axios.get('http://localhost:8000/api/categories', {
+      const response = await axios.get('http://47.130.121.192:8000/api/categories', {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
       });
       setCategories(response.data);
@@ -29,11 +29,11 @@ const CategoryManagement = () => {
     e.preventDefault();
     try {
       if (categoryForm.id) {
-        await axios.put(`http://localhost:8000/api/categories/${categoryForm.id}`, categoryForm, {
+        await axios.put(`http://47.130.121.192:8000/api/categories/${categoryForm.id}`, categoryForm, {
           headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
         });
       } else {
-        await axios.post('http://localhost:8000/api/categories', categoryForm, {
+        await axios.post('http://47.130.121.192:8000/api/categories', categoryForm, {
           headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
         });
       }
@@ -54,7 +54,7 @@ const CategoryManagement = () => {
 
   const handleDelete = async () => {
     try {
-      await axios.delete(`http://localhost:8000/api/categories/${deleteItem.id}`, {
+      await axios.delete(`http://47.130.121.192:8000/api/categories/${deleteItem.id}`, {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
       });
       fetchCategories();

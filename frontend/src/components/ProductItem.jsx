@@ -2,9 +2,8 @@ import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { CartContext } from '../context/CartContext';
 import { FaRegHeart,FaShoppingCart } from 'react-icons/fa';
-
-const API_BASE_URL = "http://54.179.0.116:8000";
-
+const API_BASE_URL = "http://47.130.121.192:8000";
+const API_IMAGE_URL = `${API_BASE_URL}/storage/`;
 const ProductItem = ({ id, image, name, price }) => {
   const { addToCart } = useContext(CartContext);
 
@@ -17,7 +16,7 @@ const ProductItem = ({ id, image, name, price }) => {
   const getImageUrl = (imagePath) => {
     if (!imagePath) return '';
     if (imagePath.startsWith('http')) return imagePath;
-    return `${API_BASE_URL}/${imagePath}`;
+    return `${API_IMAGE_URL}/${imagePath}`;
   };
 
   return (

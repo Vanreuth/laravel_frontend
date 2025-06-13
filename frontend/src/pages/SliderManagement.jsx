@@ -24,7 +24,7 @@ const SliderManagement = () => {
 
   const fetchSliders = async () => {
     try {
-      const response = await axios.get('http://localhost:8000/api/sliders', {
+      const response = await axios.get('http://47.130.121.192:8000/api/sliders', {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
       });
       setSliders(response.data);
@@ -48,14 +48,14 @@ const SliderManagement = () => {
 
       if (sliderForm.id) {
         formData.append('_method', 'PUT'); // Laravel requires _method for PUT with FormData
-        await axios.post(`http://localhost:8000/api/sliders/${sliderForm.id}`, formData, {
+        await axios.post(`http://47.130.121.192:8000/api/sliders/${sliderForm.id}`, formData, {
           headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`,
             'Content-Type': 'multipart/form-data', // Essential for FormData
           },
         });
       } else {
-        await axios.post('http://localhost:8000/api/sliders', formData, {
+        await axios.post('http://47.130.121.192:8000/api/sliders', formData, {
           headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`,
             'Content-Type': 'multipart/form-data',
@@ -81,7 +81,7 @@ const SliderManagement = () => {
 
   const handleDelete = async () => {
     try {
-      await axios.delete(`http://localhost:8000/api/sliders/${deleteItem.id}`, {
+      await axios.delete(`http://47.130.121.192:8000/api/sliders/${deleteItem.id}`, {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
       });
       fetchSliders();
@@ -296,7 +296,7 @@ const SliderManagement = () => {
                   <tr key={id}>
                     <td style={styles.td} className="text-muted">{slider.id}</td>
                     <td style={styles.td}>
-                      <img src={`http://localhost:8000${slider.image_url}`} alt={slider.title} style={styles.sliderImage} />
+                      <img src={`http://47.130.121.192:8000${slider.image_url}`} alt={slider.title} style={styles.sliderImage} />
                     </td>
                     <td style={styles.td}>
                       <span style={{ fontWeight: 600 }}>{slider.title}</span>
