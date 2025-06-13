@@ -67,7 +67,6 @@
     });
   </script>
 
-
   <!-- PerfectScrollbar JS -->
   <script type="module" src="https://cdnjs.cloudflare.com/ajax/libs/perfect-scrollbar/1.5.0/perfect-scrollbar.min.js"></script>
   <script type="module">
@@ -81,6 +80,18 @@
       });
       $(window).on('resize', function() {
         ps.update();
+      });
+    });
+  </script>
+
+  <!-- Isotope JS -->
+  <script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js"></script>
+  <script>
+    // Initialize Isotope
+    $(window).on('load', function() {
+      var $grid = $('.isotope-grid').isotope({
+        itemSelector: '.isotope-item',
+        layoutMode: 'fitRows'
       });
     });
   </script>

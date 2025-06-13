@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import { CartContext } from '../context/CartContext';
 import { FaRegHeart,FaShoppingCart } from 'react-icons/fa';
 
+const API_BASE_URL = "http://54.179.0.116:8000";
+
 const ProductItem = ({ id, image, name, price }) => {
   const { addToCart } = useContext(CartContext);
 
@@ -11,16 +13,27 @@ const ProductItem = ({ id, image, name, price }) => {
     addToCart(product);
   };
 
+  // Function to get the full image URL
+  const getImageUrl = (imagePath) => {
+    if (!imagePath) return '';
+    if (imagePath.startsWith('http')) return imagePath;
+    return `${API_BASE_URL}/${imagePath}`;
+  };
+
   return (
     <div className="block2">
       <div className=" block2-pic hov-img0 item-center  position-relative border" style={{ width: '18rem', padding: '2rem' }}>
-      <img
-          src={image}
-          alt="Product"
+        <img
+          src={getImageUrl(image)}
+          alt={name}
           style={{ width: '100%', height: '18rem'}}
           className="rounded"
+          onError={(e) => {
+            e.target.onerror = null;
+            e.target.src = 'https://via.placeholder.com/300x300?text=No+Image';
+          }}
         />
-         <span
+        <span
           className="position-absolute text-uppercase"
           style={{
             writingMode: 'vertical-rl',
@@ -45,16 +58,15 @@ const ProductItem = ({ id, image, name, price }) => {
       <div className="block2-txt flex-w flex-t p-t-14">
         <div className="block2-txt-child1 ">
           <div className='d-flex justify-content-between'>
-          <h1 className="stext-105 cl3">US ${price}</h1>
-        <div className="block2-txt-child2 p-t-3">
-          <button
-            onClick={handleAddToCart}
-            className="btn-addwish-b2 dis-block pos-relative js-addwish-b2  "
-          >
-            <FaRegHeart/>
-          </button>
-        </div>
-
+            <h1 className="stext-105 cl3">US ${price}</h1>
+            <div className="block2-txt-child2 p-t-3">
+              <button
+                onClick={handleAddToCart}
+                className="btn-addwish-b2 dis-block pos-relative js-addwish-b2  "
+              >
+                <FaRegHeart/>
+              </button>
+            </div>
           </div>
           <Link
             to={`/product/${id}`}  

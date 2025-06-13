@@ -4,8 +4,7 @@ import { ShopContaxt } from "../context/ShopContext";
 import axios from "axios";
 
 const Shop = () => {
-  const { products, search, showSearch, loading, error } =
-    useContext(ShopContaxt);
+  const { products, search, showSearch, loading, error } = useContext(ShopContaxt);
 
   const [showFilter, setShowFilter] = useState(false);
   const [filterProduct, setFilterProduct] = useState([]);
@@ -13,17 +12,26 @@ const Shop = () => {
   const [categories, setCategories] = useState([]);
   const [sortType, setSortType] = useState("relavent");
   const [searchText, setSearchText] = useState("");
+  const [categoryError, setCategoryError] = useState(null);
 
   // Fetch categories
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const response = await axios.get(
-          "http://localhost:8000/api/categories"
-        );
-        setCategories(response.data);
+        const response = await axios.get("http://54.179.0.116:8000/api/categories");
+        
+        if (response.data && response.data.list && Array.isArray(response.data.list)) {
+          setCategories(response.data.list);
+          setCategoryError(null);
+        } else {
+          console.error("Invalid categories data format:", response.data);
+          setCategoryError("Failed to load categories");
+          setCategories([]);
+        }
       } catch (error) {
-        console.error("Failed to fetch categories:", error);
+        console.error("Error fetching categories:", error);
+        setCategoryError("Failed to load categories");
+        setCategories([]);
       }
     };
     fetchCategories();
@@ -40,6 +48,12 @@ const Shop = () => {
 
   // Apply filters and sorting logic
   const applyFiltersAndSort = () => {
+    if (!Array.isArray(products)) {
+      console.error("Products is not an array:", products);
+      setFilterProduct([]);
+      return;
+    }
+
     let productCopy = [...products];
 
     // Search filter
@@ -68,12 +82,14 @@ const Shop = () => {
 
   // Initial load
   useEffect(() => {
-    setFilterProduct(products);
+    if (Array.isArray(products)) {
+      setFilterProduct(products);
+    }
   }, [products]);
 
   useEffect(() => {
     applyFiltersAndSort();
-  }, [category, search, showSearch, sortType, searchText]);
+  }, [category, search, showSearch, sortType, searchText, products]);
 
   if (loading) {
     return (
@@ -116,17 +132,23 @@ const Shop = () => {
               >
                 All Products
               </button>
-              {categories.map((cat) => (
-                <button
-                  key={cat.id}
-                  className={`stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 ${
-                    category.includes(cat.id.toString()) ? "how-active1" : ""
-                  }`}
-                  onClick={() => toggleCategory(cat.id.toString())}
-                >
-                  {cat.name}
-                </button>
-              ))}
+              {categoryError ? (
+                <div className="alert alert-danger" role="alert">
+                  {categoryError}
+                </div>
+              ) : (
+                categories.map((cat) => (
+                  <button
+                    key={cat.id}
+                    className={`stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 ${
+                      category.includes(cat.id.toString()) ? "how-active1" : ""
+                    }`}
+                    onClick={() => toggleCategory(cat.id.toString())}
+                  >
+                    {cat.name}
+                  </button>
+                ))
+              )}
             </div>
 
             {/* Sort Dropdown */}
@@ -154,7 +176,7 @@ const Shop = () => {
                     id={item.id}
                     name={item.name}
                     price={item.price}
-                    image={item.image_url}
+                    image={item.image}
                   />
                 </div>
               ))
