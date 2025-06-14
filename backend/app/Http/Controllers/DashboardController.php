@@ -17,7 +17,7 @@ class DashboardController extends Controller
             $totalProducts = Product::count();
             $totalOrders = Order::count();
             $totalUsers = User::count();
-            $totalRevenue = Order::where('status', 'completed')->sum('total_amount');
+            $totalRevenue = Order::where('status', 'paid')->sum('total_amount');
 
             // Get recent orders with user information
             $recentOrders = Order::with('user')
@@ -28,17 +28,14 @@ class DashboardController extends Controller
                     return [
                         'id' => $order->id,
                         'customer_name' => $order->user->name,
-                        'status' => $order->status,
-                        'total' => $order->total_amount,
+                        'status' => $order->payment_status,
+                        'total' => $order->total_price,
                         'created_at' => $order->created_at
                     ];
                 });
 
-            // Get top products
-            $topProducts = Product::withCount(['orderItems as total_sold' => function ($query) {
-                    $query->select(DB::raw('SUM(quantity)'));
-                }])
-                ->orderBy('total_sold', 'desc')
+            // Get top products based on stock quantity
+            $topProducts = Product::orderBy('stock_quantity', 'desc')
                 ->take(5)
                 ->get()
                 ->map(function ($product) {
@@ -47,7 +44,7 @@ class DashboardController extends Controller
                         'name' => $product->name,
                         'price' => $product->price,
                         'image' => $product->image,
-                        'stock' => $product->stock
+                        'stock' => $product->quantity
                     ];
                 });
 
