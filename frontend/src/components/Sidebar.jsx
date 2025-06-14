@@ -95,13 +95,14 @@ const Sidebar = ({ activeTab, setActiveTab, logout }) => {
   };
 
   const menuItems = [
-    { id: "users", label: "User Management", icon: "bi-people" },
+    { id: "dashboard", label: "Dashboard", icon: "bi-speedometer2" },
+    { id: "users", label: "User Management", icon: "bi-person-gear" },
     { id: "silder", label: "Slider", icon: "bi-images" },
-    { id: "products", label: "Product Management", icon: "bi-box-seam" },
-    { id: "categories", label: "Category Management", icon: "bi-tags" },
-    { id: "orders", label: "Order Management", icon: "bi-receipt" },
-    { id: "about", label: "About Us", icon: "bi-info-circle" },
-    { id: "contact", label: "Contact", icon: "bi-envelope" },
+    { id: "products", label: "Product Management", icon: "bi-box-seam-fill" },
+    { id: "categories", label: "Category Management", icon: "bi-tags-fill" },
+    { id: "orders", label: "Order Management", icon: "bi-cart-check-fill" },
+    { id: "about", label: "About Us", icon: "bi-info-circle-fill" },
+    { id: "contact", label: "Contact", icon: "bi-envelope-fill" },
   ];
 
   return (

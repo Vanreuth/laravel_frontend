@@ -13,6 +13,7 @@ import OrderManagement from "./OrderManagement";
 import SliderManagement from "./SliderManagement";
 import AboutUsManagement from "./AboutUsManagement";
 import ContactManagement from "./Contact Management";
+import DashboardManagement from "./DashboardManagement";
 
 const Dashboard = () => {
   const { user, logout } = useAuth();
@@ -104,6 +105,7 @@ const Dashboard = () => {
           }}
         >
           <div className="fade-in">
+            {activeTab === "dashboard" && <DashboardManagement />}
             {activeTab === "silder" && <SliderManagement />}
             {activeTab === "products" && (
               <ProductManagement categories={categories} />
